@@ -1,6 +1,6 @@
 # AWS Lambda Cron Terraform Module
 
-[![Build Status](https://travis-ci.org/mergermarket/tf_aws_lambda_cron.svg?branch=master)](https://travis-ci.org/mergermarket/tf_aws_lambda_cron)
+[![Build Status](https://travis-ci.org/mergermarket/tf_aws_lambda.svg?branch=master)](https://travis-ci.org/mergermarket/tf_aws_lambda)
 
 This module will deploy a lambda function and a cron rule to run the lambda function on a schedule.
 
@@ -13,7 +13,6 @@ This module will deploy a lambda function and a cron rule to run the lambda func
 - `runtime` - (string) - **REQUIRED** The runtime environment for the Lambda function you are uploading.
 - `lambda_env` - (string) - Environment parameters passed to the lambda function
 - `lambda_iam_policy_name` (string) - **REQUIRED** - The name for the Lambda functions IAM policy
-- `lambda_cron_schedule` (string) - **REQUIRED** - The scheduling expression. For example, cron(0 20 * * ? *) or rate(5 minutes).
 
 ## Usage
 
@@ -27,7 +26,6 @@ module "lambda-function" {
   runtime                   = "nodejs"
   lambda_env                = "${var.lambda_env}"
   lambda_iam_policy_name    = "name for lambda iam policy"
-  lambda_cron_schedule      = "rate(5 minutes)"
 }
 ```
 Lambda environment variables file:
