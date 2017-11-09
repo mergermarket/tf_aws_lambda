@@ -28,19 +28,3 @@ variable "lambda_env" {
   type        = "map"
   default     = {}
 }
-
-variable "lambda_iam_policy_name" {
-  description = "The name for the Lambda functions IAM policy."
-}
-
-variable "subnet_ids" {
-  type        = "list"
-  description = "The VPC subnets in which the lambda runs"
-  default     = []
-}
-
-variable "security_group_ids" {
-  type        = "list"
-  description = "The VPC security groups assigned to the lambda"
-  default     = []
-}
