@@ -13,6 +13,8 @@ This module will deploy a lambda function.
 - `runtime` - (string) - **REQUIRED** The runtime environment for the Lambda function you are uploading.
 - `lambda_env` - (string) - Environment parameters passed to the lambda function
 - `lambda_iam_policy_name` (string) - **REQUIRED** - The name for the Lambda functions IAM policy
+- `memory_size` (number) - Amount of memory in MB your Lambda Function can use at runtime
+- `timeout` (number) - The maximum time in seconds that the lambda can run for
 
 ## Usage
 
@@ -26,6 +28,8 @@ module "lambda-function" {
   runtime                   = "nodejs"
   lambda_env                = "${var.lambda_env}"
   lambda_iam_policy_name    = "name for lambda iam policy"
+  memory_size               = 256
+  timeout                   = 5
 }
 ```
 Lambda environment variables file:
