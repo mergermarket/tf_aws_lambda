@@ -18,6 +18,36 @@ variable "runtime" {
   description = "The runtime environment for the Lambda function you are uploading."
 }
 
+variable "subnet_ids" {
+  type        = "list"
+  description = "The VPC subnets in which the lambda runs"
+}
+
+variable "security_group_ids" {
+  type        = "list"
+  description = "The VPC security groups assigned to the lambda"
+}
+
+// Optional Variables
+variable "lambda_role_policy" {
+  description = "Lambda IAM Role Policy."
+  default = <<END
+{
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "logs:CreateLogGroup",
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
+      ],
+      "Resource": "arn:aws:logs:*:*:*"
+    }
+  ]
+}
+END
+}
+
 variable "timeout" {
   description = "The maximum time in seconds that the lambda can run for."
   default     = 3
