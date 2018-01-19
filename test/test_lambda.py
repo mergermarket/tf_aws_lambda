@@ -19,7 +19,7 @@ class TestCreateTaskdef(unittest.TestCase):
             'test/infra'
         ]).decode('utf-8')
         assert dedent("""
-            Plan: 6 to add, 0 to change, 0 to destroy.
+            Plan: 3 to add, 0 to change, 0 to destroy.
         """).strip() in output
 
     def test_create_lambda(self):
@@ -101,38 +101,4 @@ class TestCreateTaskdef(unittest.TestCase):
             + module.lambda.aws_iam_role_policy_attachment.vpc_permissions
                 policy_arn: "arn:aws:iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole"
                 role:       "${aws_iam_role.iam_for_lambda.name}"
-        """).strip() in output
-
-    def test_iam_policy_name_for_lambda_created(self):
-        output = check_output([
-            'terraform',
-            'plan',
-            '-no-color',
-            'test/infra'
-        ]).decode('utf-8')
-
-        assert dedent("""
-            + module.lambda.aws_iam_role_policy.lambda_policy
-                name:   "lambda-IAM-policy-name"
-        """).strip() in output
-
-    def test_cloudwatch_event_rule_created(self):
-        output = check_output([
-            'terraform',
-            'plan',
-            '-no-color',
-            'test/infra'
-        ]).decode('utf-8')
-        assert dedent("""
-        + module.lambda.aws_cloudwatch_event_rule.cron_schedule
-            arn:                 "<computed>"
-            description:         "This event will run according to a schedule for lambda check_lambda_function"
-            is_enabled:          "true"
-            name:                "check_lambda_function-cron_schedule"
-            schedule_expression: "rate(5 minutes)"
-
-        + module.lambda.aws_cloudwatch_event_target.event_target
-            arn:       "${aws_lambda_function.lambda_function.arn}"
-            rule:      "check_lambda_function-cron_schedule"
-            target_id: "<computed>"
         """).strip() in output

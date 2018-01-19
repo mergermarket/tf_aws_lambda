@@ -8,11 +8,12 @@ resource "aws_lambda_function" "lambda_function" {
   timeout       = "${var.timeout}"
   memory_size   = "${var.memory_size}"
 
+  vpc_config {
+      subnet_ids         = "${var.subnet_ids}"
+      security_group_ids = ["${var.security_group_ids}"]
+    }
+
   environment {
     variables = "${var.lambda_env}"
   }
-}
-
-output "lambda_arn" {
-  value = "${aws_lambda_function.lambda_function.arn}"
 }
