@@ -18,20 +18,6 @@ module "lambda" {
   handler                = "some_handler"
   runtime                = "python"
   lambda_env             = "${var.lambda_env}"
-  subnet_ids             = "${var.subnet_ids}"
-  security_group_ids     = "${var.security_group_ids}"
-}
-
-variable "subnet_ids" {
-  type        = "list"
-  description = "The VPC subnets in which the Lambda runs."
-  default     = []
-}
-
-variable "security_group_ids" {
-  type        = "list"
-  description = "The VPC security groups assigned to the Lambda."
-  default     = []
 }
 
 variable "lambda_env" {
