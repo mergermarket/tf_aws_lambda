@@ -18,16 +18,6 @@ variable "runtime" {
   description = "The runtime environment for the Lambda function you are uploading."
 }
 
-variable "subnet_ids" {
-  type        = "list"
-  description = "The VPC subnets in which the Lambda runs."
-}
-
-variable "security_group_ids" {
-  type        = "list"
-  description = "The VPC security groups assigned to the Lambda."
-}
-
 // Optional Variables
 variable "lambda_role_policy" {
   description = "The Lambda IAM Role Policy."
