@@ -17,3 +17,12 @@ resource "aws_lambda_function" "lambda_function" {
     variables = "${var.lambda_env}"
   }
 }
+
+resource "aws_cloudwatch_log_subscription_filter" "kinesis_log_stream" {
+  count           = "${var.datadog_log_subscription_arn != "" ? 1 : 0}"
+  name            = "kinesis-log-stream-${var.function_name}"
+  destination_arn = "${var.datadog_log_subscription_arn}"
+  log_group_name  = "/aws/lambda/${var.function_name}"
+  filter_pattern  = ""
+  depends_on      = ["aws_lambda_function.lambda_function"]
+}

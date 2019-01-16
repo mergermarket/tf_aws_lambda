@@ -29,6 +29,11 @@ variable "security_group_ids" {
 }
 
 // Optional Variables
+variable "datadog_log_subscription_arn" {
+  description = "Log subscription arn for shipping logs to datadog"
+  default     = ""
+}
+
 variable "lambda_role_policy" {
   description = "The Lambda IAM Role Policy."
   default = <<END
