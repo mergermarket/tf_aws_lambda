@@ -2,6 +2,11 @@ variable "s3_bucket" {
   description = "The name of the bucket containing your uploaded Lambda deployment package."
 }
 
+variable "datadog_log_subscription_arn" {
+  description = "Log subscription arn for shipping logs to datadog"
+  default     = ""
+}
+
 variable "s3_key" {
   description = "The s3 key for your Lambda deployment package."
 }
